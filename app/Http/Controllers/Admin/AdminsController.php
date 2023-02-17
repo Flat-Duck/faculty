@@ -95,7 +95,7 @@ class AdminsController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        $admin->toggleActivation();
+        $admin->delete();
         return redirect()->route('admin.admins.index')->with([
             'type' => 'success',
             'message' => 'تم تغيير الحالة بنجاح'
