@@ -32,7 +32,7 @@
 
                                 <x-form.input type="email" name="email" placeholder="البريد الالكتروني" />
 
-                                <x-form.input type="password" name="phone" placeholder="كلمة المرور" />
+                                <x-form.input type="password" name="password" placeholder="كلمة المرور" />
 
                             </div>                     
                         </div>
