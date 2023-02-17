@@ -26,7 +26,7 @@
                     
                                 <x-form.input type="text" name="name" placeholder="الإسم كامل" />
 
-                                <x-form.input type="text" name="username"placeholder="اسم المستخدم" />
+                                <x-form.input type="text" name="username" placeholder="اسم المستخدم" />
                                 
                                 <x-form.input type="text" name="phone" placeholder="رقم الهاتف" />
 
