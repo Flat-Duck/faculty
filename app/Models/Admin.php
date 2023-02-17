@@ -93,6 +93,21 @@ class Admin extends Authenticatable implements HasMedia
         ];
     }
 
+        /**
+     * Validation rules
+     *
+     * @return array
+     **/
+    public static function validationRules($id = null)
+    {
+        return [
+            'name' => 'required|string',
+            'username' => 'required|string|unique:admins,username,'.$id,
+            'email' => 'required|email|unique:admins,email,'.$id,
+            'password' => 'string|nullable',
+        ];
+    }
+
     /**
      * Password update validation rules
      *
