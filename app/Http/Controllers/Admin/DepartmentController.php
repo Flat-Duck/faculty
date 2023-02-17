@@ -15,7 +15,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::getList();
+        $departments = Department::getList(request()->search);
 
         return view('admin.departments.index',compact('departments'));
     }

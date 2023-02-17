@@ -13,7 +13,7 @@ class SpecializationController extends Controller
      */
     public function index()
     {
-        $specializations = Specialization::getList();
+        $specializations = Specialization::getList(request()->search);
 
         return view('admin.specializations.index',compact('specializations'));
     }
