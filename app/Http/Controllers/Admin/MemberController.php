@@ -83,26 +83,12 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = request()->validate(Member::validationRules());
-        if ($request->hasFile('picture')) {
-            $fileName = time().'.'.$request->picture->extension();  
-
-            //$path = Storage::putFile('photos', new File('images'));
-
-            //$request->picture->move(public_path('uploads'), $fileName);
-            
-
-            $path = Storage::putFileAs(
-                'public/images', $request->file('picture'), $request->n_id. '.' .$request->picture->extension()
-            );
-            $validatedData['picture'] = $path;
-            
-            //dd($path);
-        }    
-        
-        
+        $validatedData = request()->validate(Member::validationRules());        
         $member = Member::create($validatedData);
         $member->calculateNextPromotionDate();
+        if (request()->has(['avatar'])) {
+            $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
 
         return redirect()->route('admin.members.index')->with([
             'type' => 'success',
@@ -147,7 +133,9 @@ class MemberController extends Controller
     {
         $validatedData = request()->validate(Member::validationRules($member->id));           
         $member->update($validatedData);
-        
+        if (request()->has(['avatar'])) {
+            $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
 
         return redirect()->route('admin.members.index')->with([
             'type' => 'success',

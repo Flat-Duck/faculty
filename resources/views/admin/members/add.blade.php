@@ -73,28 +73,16 @@
                                 @enderror        
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="picture">الصورة الشخصية</label>
+                                <label class="form-label" for="avatar">الصورة الشخصية</label>
                                 <input type="file"
-                                    class="form-control @error('picture') is-invalid @enderror"
-                                    name="picture"
+                                    class="form-control @error('avatar') is-invalid @enderror"
+                                    name="avatar"
                                     accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
-                                    id="picture"/>
-                                    @error('picture')
+                                    id="avatar"/>
+                                    @error('avatar')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="cv">السيرة الذاتية </label>
-                                <input type="file"
-                                accept=".pdf, .docx, .doc, .txt"
-                                    class="form-control @error('cv') is-invalid @enderror"
-                                    name="cv"
-                                    
-                                    id="cv"/>
-                                    @error('cv')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                            </div>
+                            </div>                      
                         </div>
                     </div>
                     <div class="card-footer text-end">                        
