@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Admin;
 
 class AdminsController extends Controller
@@ -60,10 +59,6 @@ class AdminsController extends Controller
      */
     public function edit(Admin $admin)
     {
-        // $students = Student::all();
-        // $teachers = Teacher::all();
-        // $levels = Level::all();
-
         return view('admin.admins.edit',compact('admin'));
     }
 
@@ -95,7 +90,7 @@ class AdminsController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        $admin->delete();
+        $admin->toggleActivation();
         return redirect()->route('admin.admins.index')->with([
             'type' => 'success',
             'message' => 'تم تغيير الحالة بنجاح'

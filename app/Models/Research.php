@@ -4,54 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Scopes\Searchable;
-class Research extends Model
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Research extends Model implements HasMedia
 {
-     use Searchable;
+    use Notifiable,Searchable,HasFactory, InteractsWithMedia;
 
+protected $table ="researches";
+     
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title',
-        'member_id',
-        'description',
-        'file',
-        'decision_id'
-    ];
+        'title', 'description', 'published_at', 
+        'place','member_id'];
 
-    
-
-    public function getMinimumYears($degree,$academic_degrees)
-    {
-        if($academic_degrees == 'أستاذ'){
-            return 0;
-        }
-        if($academic_degrees == 'أستاذ مساعد' && $degree == 'دكتوراة'){
-            return 3;
-
-        }elseif($academic_degrees == 'أستاذ مشارك' && $degree == 'ماجستير'){
-            return 6;
-        }else{
-            return 4;
-        }
-    }
-   
     /**
      * Validation rules
      *
      * @return array
      **/
-
     public static function validationRules()
     {
         return [
-            'title'=> 'required|string',
-            'member_id'=> 'required|string',
-            'description'=> 'required|string',
-            'file'=> 'required|string',
-            'decision_id'=> 'required|string'            
+            'title' => 'required|string',
+            'description' => 'required|string',           
+            'published_at' => 'required|date',
+            'place' => 'required|string',
+            'member_id' => 'required|int',
+  
         ];
     }
 

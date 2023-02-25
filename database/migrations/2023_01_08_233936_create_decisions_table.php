@@ -15,6 +15,11 @@ class CreateDecisionsTable extends Migration
     {
         Schema::create('decisions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('member_id')->unsigned()->index();                        
+            $table->string('number')->nullable();
+            $table->integer('year')->nullable();
+            $table->date('promotion_date')->nullable();
+            $table->string('type')->index();
             $table->timestamps();
         });
     }

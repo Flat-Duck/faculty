@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SpecializationController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\AdminsController;
+use App\Http\Controllers\Admin\DecisionController;
 use App\Http\Controllers\Admin\ProfileController;
 //use Auth;
 /*
@@ -58,8 +59,11 @@ Route::name('admin.')->prefix('admin')->group(function () {
         // Dashboard
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('admins', AdminsController::class);
+        Route::resource('decisions', DecisionController::class);
         Route::get('members/this_month', [MemberController::class, 'this_month'])->name('members.this_month');
         Route::get('members/this_year', [MemberController::class, 'this_year'])->name('members.this_year');
+        Route::get('members/archive', [MemberController::class, 'archive'])->name('members.archive');
+        Route::get('members/{member}/decisions/create', [DecisionController::class, 'create'])->name('decisions.create');
         Route::post('members/{member}/upload_cv', [MemberController::class, 'upload_cv'])->name('members.upload_cv');
         Route::post('members/{member}/upload_research', [MemberController::class, 'upload_research'])->name('members.upload_research');
         Route::resource('members', MemberController::class);
@@ -68,8 +72,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::resource('departments', DepartmentController::class);
         
         // Profile
-        Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
-        Route::post('/profile', [AdminController::class, 'profileUpdate']);
+        Route::get('/profile', [AdminController::class, 'profile'])->name('profile.show');
+        Route::post('/profile', [AdminController::class, 'profileUpdate'])->name('profile.update');
         Route::post('/profile/avatar', [AdminController::class, 'avatarUpdate']);
         Route::post('/password', [AdminController::class, 'passwordUpdate'])->name('password_update');
 

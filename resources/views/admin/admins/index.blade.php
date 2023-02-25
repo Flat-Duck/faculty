@@ -71,11 +71,12 @@
                                         <i class="ti ti-edit"></i>
                                     </a>
                                     <form id="delete{{$admin->id}}" action="{{ route('admin.admins.destroy', ['admin' => $admin->id]) }}"
-                                        method="POST" class="inline pointer btn btn-icon btn-outline-danger">
+                                        method="POST" class="inline pointer btn btn-icon {{$admin->is_active? 'btn-outline-danger' : 'btn-outline-success'}}">
                                         @csrf
                                         @method('DELETE')
                                         <a onclick="if (false) { this.parentNode.submit() }" data-record-id="{{$admin->id}}" data-bs-toggle="modal" data-bs-target="#modal-danger">
-                                            <i class="ti ti-trash-x"></i>
+                                            <i class="ti {{$admin->is_active? 'ti-lock' : 'ti-lock-open'}}"></i>
+                                            
                                         </a>
                                     </form>
                                 </td>
@@ -96,5 +97,5 @@
             </div>
         </div>
     </div>
-    <x-modals.danger/>
+    <x-modals.danger message="هل أنت متأكد من تغيير حالة المستخدم؟؟"/>
 @endsection

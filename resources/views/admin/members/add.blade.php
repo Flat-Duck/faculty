@@ -23,10 +23,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 col-xl-6">
-                    
+                                
                                 <x-form.input  type="text" name="name" placeholder="الأسم رباعي" />
                                 
-                                <x-form.input type="text" name="n_id" placeholder="الرقم الوطني" />
+                                <x-form.input type="text" name="n_id" placeholder="الرقم الوطني / جواز السفر" />
                                 
                                 <x-form.input type="text" name="phone" placeholder="رقم الهاتف" />
                                 
@@ -68,6 +68,9 @@
                                     placeholder="ملاحظات "
                                     spellcheck="false"                                     
                                     data-ms-editor="true">{{ old('notes') }}</textarea>
+                                    @error('notes')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror        
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="picture">الصورة الشخصية</label>

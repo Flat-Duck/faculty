@@ -20,6 +20,13 @@ class Member extends Model implements HasMedia
      
      use SoftDeletes, Notifiable,Searchable,HasFactory, InteractsWithMedia;
 
+     public static function this_year()
+     {
+        return Member::whereMonth('next_pormotion_date', date('m'))
+                        ->whereYear('next_pormotion_date', date('Y'))
+                        ->get();
+    }
+
      public function registerAllMediaConversions(?Media $media = null): void
      {
          $this->addMediaConversion('thumb_200')
@@ -106,20 +113,20 @@ class Member extends Model implements HasMedia
      *
      * @return array
      **/
-    public static function validationRules()
+    public static function validationRules($id = null)
     {
         return [
-            'name'=> 'required|string',
-            'n_id'=> 'required|string',
-            'employment_date'=> 'required|string',
-            'department_id'=> 'required|string',
-            'specialization_id'=> 'required|string',
+            'name'=> 'required|string',            
+            'n_id'=> 'required|string|max:12|min:8|unique:members,n_id,'.$id,            
+            'employment_date'=> 'required|date|before:' .date('Y-m-d'),
+            'department_id'=> 'required|numeric',
+            'specialization_id'=> 'required|numeric',
             'degree'=> 'required|string',
             'academic_degree'=> 'required|string',
-            'last_pormotion_date'=> 'date',
-            'notes'=> 'required|string',
+            'last_pormotion_date'=> 'date|before:' .date('Y-m-d'),
+            'notes'=> 'string|nullable',
             'phone'=> 'required|string',
-            'email'=> 'required|string',
+            'email'=> 'required|email',
         ];
     }
 
@@ -128,7 +135,21 @@ class Member extends Model implements HasMedia
      */
     public function decisions()
     {
-        return $this->hasMany('App\Decision');
+        return $this->hasMany('App\Models\Decision');
+    }
+        /**
+     * Get the providers for the Service.
+     */
+    public function researches()
+    {
+        return $this->hasMany('App\Models\Research');
+    }
+        /**
+     * Get the providers for the Service.
+     */
+    public function avaliableResearches()
+    {
+        return $this->researches()->whereNull('decision_id');
     }
     /**
      * Get the providers for the Service.
@@ -152,10 +173,34 @@ class Member extends Model implements HasMedia
      **/
     public static function getList($search = null)
     {
-        return static::search($search)
-            ->latest()
+        return static::search($search)->whereNull('is_archived')
+            //->latest()
             ->paginate(10)
             ->withQueryString();
+        
+    }
+         /**
+     * Returns the paginated list of resources
+     *
+     * @return \Illuminate\Pagination\Paginator
+     **/
+    public static function getArchived($search = null)
+    {
+        return static::search($search)->whereNotNull('is_archived')
+            //->latest()
+            ->paginate(10)
+            ->withQueryString();
+        
+    }
+         /**
+     * Returns the paginated list of resources
+     *
+     * @return \Illuminate\Pagination\Paginator
+     **/
+    public  function addToArchive()
+    {
+         $this->is_archived = Carbon::now();
+         $this->save();
         
     }
 

@@ -15,7 +15,7 @@
         <div class="container-tight py-4">
             <div class="text-center mb-4">
                 <a href="{{ config('app.url') }}" class="navbar-brand navbar-brand-autodark">
-                    <img src="{{ url('img/logo.svg') }}" height="36" alt="" />
+                    <img src="{{ url('img/logo.png') }}" width="128" height="128" alt="كلية التربية" >
                 </a>
             </div>
 

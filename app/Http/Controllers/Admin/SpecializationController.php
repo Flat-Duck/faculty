@@ -78,7 +78,16 @@ class SpecializationController extends Controller
      */
     public function update(Request $request, Specialization $specialization)
     {
-        //
+        $validatedData = request()->validate(
+            Specialization::validationRules($specialization->id)
+        );
+
+        $specialization->update($validatedData);
+
+        return redirect()->route('admin.specializations.index')->with([
+            'type' => 'success',
+            'message' => 'تم التعديل بنجاح'
+        ]);
     }
 
     /**

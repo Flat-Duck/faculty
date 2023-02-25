@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['page' => 'members'])
+@extends('admin.layouts.app', ['page' => 'profiles'])
 @section('content')
 
 <div class="container-xl">

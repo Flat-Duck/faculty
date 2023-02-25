@@ -57,14 +57,14 @@
                                     <a class="btn btn-icon btn-outline-info"  href="{{ route('admin.specializations.edit', ['specialization' => $specialization->id]) }}">
                                         <i class="ti ti-edit"></i>
                                     </a>
-                                    <form id="delete{{$specialization->id}}" action="{{ route('admin.specializations.destroy', ['specialization' => $specialization->id]) }}"
+                                    {{-- <form id="delete{{$specialization->id}}" action="{{ route('admin.specializations.destroy', ['specialization' => $specialization->id]) }}"
                                         method="POST" class="inline pointer btn btn-icon btn-outline-danger">
                                         @csrf
                                         @method('DELETE')
                                         <a onclick="if (false) { this.parentNode.submit() }" data-record-id="{{$specialization->id}}" data-record-title="The first one"  data-bs-toggle="modal" data-bs-target="#modal-danger">
                                             <i class="ti ti-trash-x"></i>
                                         </a>
-                                    </form>
+                                    </form> --}}
                                 </td>
                             </tr>
                             @empty
@@ -83,5 +83,5 @@
             </div>
         </div>
     </div>
-    <x-modals.danger/>
+    {{-- <x-modals.danger/> --}}
 @endsection

@@ -7,6 +7,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\Research;
 use App\Models\Specialization;
 use Carbon\Carbon;
 
@@ -26,6 +27,16 @@ class MemberController extends Controller
         $page = 'member';
 
         return view('admin.members.index',compact('members','page'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function archive()
+    {
+        $members = Member::getArchived(request()->search);
+        return view('admin.members.archive',compact('members'));
     }
     /**
      * Display a listing of the resource.
@@ -134,7 +145,14 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        return $request->all();
+        $validatedData = request()->validate(Member::validationRules($member->id));           
+        $member->update($validatedData);
+        
+
+        return redirect()->route('admin.members.index')->with([
+            'type' => 'success',
+            'message' => 'تم التعديل بنجاح'
+        ]);
     }
 
     /**
@@ -145,28 +163,41 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        dd(request()->all());
+        $member->addToArchive();
+        return redirect()->route('admin.admins.index')->with([
+            'type' => 'success',
+            'message' => 'تمت الارشفة بنجاح'
+        ]);
     }
 
-    //upload_research
-    //upload_cv
+
 
     public function upload_cv(Member $member, Request $request)
     {
-        
-        
         if (request()->has(['cv'])) {
             $member->addMediaFromRequest('cv')->toMediaCollection('cvs');
         }
         return back()->with(['type' => 'success', 'message' => 'Profile updated successfully']);
-
     }
+    
     public function upload_research(Member $member, Request $request)
     {
-        
-        
+       
+        $validatedData = request()->validate(Research::validationRules());           
+
+        $research = Research::create($validatedData);
+
+        // if ($images = $request->file('images')) {
+           
+        // }
+        //dd(request()->all());
         if (request()->has(['research'])) {
-            $member->addMediaFromRequest('research')->toMediaCollection('researchs');
+            $files = request()->file('research');
+            foreach ($files as $file) {
+                //dd($research);
+                $research->addMedia($file)->toMediaCollection('researchs');
+            }
+            //$research->addMediaFromRequest('research')->toMediaCollection('researchs');
         }
         return back()->with(['type' => 'success', 'message' => 'Profile updated successfully']);
 

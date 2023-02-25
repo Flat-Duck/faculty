@@ -24,10 +24,10 @@ class Department extends Model
      *
      * @return array
      **/
-    public static function validationRules()
+    public static function validationRules($id=null)
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:departments,name,'.$id,
         ];
     }
          /**

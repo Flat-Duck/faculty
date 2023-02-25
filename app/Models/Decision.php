@@ -14,8 +14,11 @@ class Decision extends Model
      * @var array
      */
     protected $fillable = [
-        'number',
-        
+        'member_id' ,
+        'number' ,
+        'year' ,
+        'promotion_date' ,
+        'type' ,                
     ];
 
     /**
@@ -26,8 +29,13 @@ class Decision extends Model
     public static function validationRules()
     {
         return [
-            'name' => 'required|string',
-            'fbID' => 'nullable|string',
+            'member_id' => 'required|numeric|exists:members,id',
+            'number' => 'required|numeric|unique:decisions,number',
+            'year' => 'required|numeric',
+            'promotion_date' => 'required|date',            
+            'type' => 'required|string',
+            'researches' => 'required|array',
+            'researches.*' => 'required|numeric|exists:researches,id',
         ];
     }
 

@@ -23,7 +23,7 @@ return [
     'alpha_num' => 'The :attribute must only contain letters and numbers.',
     'array' => 'The :attribute must be an array.',
     'ascii' => 'The :attribute must only contain single-byte alphanumeric characters and symbols.',
-    'before' => 'The :attribute must be a date before :date.',
+    'before' => ':attribute يجب ان يكون قبل تاريخ :date.',
     'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
     'between' => [
         'array' => 'The :attribute must have between :min and :max items.',
@@ -34,7 +34,7 @@ return [
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
     'current_password' => 'The password is incorrect.',
-    'date' => 'The :attribute is not a valid date.',
+    'date' => 'حقل :attribute ليس صحيح',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
     'decimal' => 'The :attribute must have :decimal decimal places.',
@@ -125,7 +125,7 @@ return [
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
-    'required' => 'The :attribute field is required.',
+    'required' => 'حقل :attribute مطلوب',
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
@@ -144,7 +144,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'هذا :attribute مستخدم مسبقا.',
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute must be uppercase.',
     'url' => 'The :attribute must be a valid URL.',
@@ -179,6 +179,26 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email'=> 'البريد الالكتروني',
+        'username'=> 'اسم المستخدم',
+        'phone'=> 'رقم الهاتف',
+        'name'=> 'الاسم',
+        'password'=> 'كلمة المرور',
+        'phone'=> 'رقم الهاتف',
+        'created_at'=>'تاريخ الانشاء',
+        'is_active'=>'',
+        'n_id'=>'الرقم الوطني / جواز سفر',
+        'employment_date'=>'تاريخ التعيين',
+        'department_id'=>'القسم',
+        'specialization_id'=>'التخصص',
+        'degree'=>'الدرجة العلمية',
+        'academic_degree'=>'الدرجة الاكادمية',
+        'last_pormotion_date'=>'تاريخ اخر ترقية',
+        'next_pormotion_date'=>'تاريخ الترقية القادمة',
+        'notes'=>'الملاحظات',
+        'picture'=>'الصورة الشخصية',
+        'is_archived'=>'',
+    ],
 
 ];

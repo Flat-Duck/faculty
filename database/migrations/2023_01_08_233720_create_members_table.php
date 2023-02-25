@@ -27,8 +27,8 @@ class CreateMembersTable extends Migration
             $table->text('notes')->nullable();
             $table->string('phone')->nullable();            
             $table->string('email')->nullable();
-            $table->string('picture')->nullable();
-            $table->string('cv')->nullable();                
+            $table->string('picture')->nullable();            
+            $table->timestamp('is_archived')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -25,7 +25,8 @@
 					</button>
 					<h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
 						<a href=".">
-						<img src="{{ url('img/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+							<img src="{{ url('img/logo.png') }}" width="128" height="128" alt="كلية التربية" >
+						{{-- <img src="{{ url('img/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image"> --}}
 						</a>
 					</h1>
 					<div class="navbar-nav flex-row order-md-last">
@@ -39,12 +40,12 @@
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-								<a href="{{ route('profile.show') }}" class="dropdown-item">{{ __('Profile') }}</a>
+								<a href="{{ route('admin.profile.show') }}" class="dropdown-item">{{ __('الملف الشخصي') }}</a>
 								<div class="dropdown-divider"></div>
 								<form method="POST" action="{{ route('logout') }}">
 									@csrf
 									<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">
-										{{ __('Log Out') }}
+										{{ __('تسجيل الخروج') }}
 									</a>
 								</form>
 							</div>

@@ -125,6 +125,17 @@ class Admin extends Authenticatable implements HasMedia
      *
      * @return \Illuminate\Pagination\Paginator
      **/
+    public function toggleActivation()
+    {
+        $this->is_active =  !$this->is_active;
+        $this->save();
+        return;
+    }
+         /**
+     * Returns the paginated list of resources
+     *
+     * @return \Illuminate\Pagination\Paginator
+     **/
     public static function getList($search = null)
     {
         return static::search($search)

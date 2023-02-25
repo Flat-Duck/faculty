@@ -80,7 +80,16 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validatedData = request()->validate(
+            Department::validationRules($department->id)
+        );
+
+        $department->update($validatedData);
+
+        return redirect()->route('admin.departments.index')->with([
+            'type' => 'success',
+            'message' => 'تم التعديل بنجاح'
+        ]);
     }
 
     /**
