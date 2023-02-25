@@ -20,7 +20,7 @@ class CreateResearchesTable extends Migration
             $table->date('published_at')->nullable();
             $table->string('place')->index();
             $table->bigInteger('member_id')->unsigned()->index();                        
-            $table->bigInteger('decision_id')->nullable();
+            $table->bigInteger('decision_id')->nullable()->unsigned()->index();    
             $table->timestamps();
 
             $table->foreign('decision_id')->references('id')->on('decisions');
