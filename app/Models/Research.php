@@ -34,7 +34,7 @@ protected $table ="researches";
         return [
             'title' => 'required|string',
             'description' => 'required|string',           
-            'published_at' => 'required|date',
+            'published_at' => 'required|date|before:' .date('Y-m-d'),
             'place' => 'required|string',
             'member_id' => 'required|int',
   
