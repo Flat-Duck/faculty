@@ -77,7 +77,7 @@
                                 <input type="file"
                                     class="form-control @error('picture') is-invalid @enderror"
                                     name="picture"
-                                    
+                                    accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
                                     id="picture"/>
                                     @error('picture')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -86,6 +86,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="cv">السيرة الذاتية </label>
                                 <input type="file"
+                                accept=".pdf, .docx, .doc, .txt"
                                     class="form-control @error('cv') is-invalid @enderror"
                                     name="cv"
                                     

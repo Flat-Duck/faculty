@@ -164,7 +164,7 @@ class MemberController extends Controller
     public function destroy(Member $member)
     {
         $member->addToArchive();
-        return redirect()->route('admin.admins.index')->with([
+        return redirect()->route('admin.members.index')->with([
             'type' => 'success',
             'message' => 'تمت الارشفة بنجاح'
         ]);

@@ -33,7 +33,8 @@
 						@auth
 						<div class="nav-item dropdown">
 							<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-								<span class="avatar avatar-sm" style="background-image: url(https://eu.ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }})"></span>
+								{{-- <span class="avatar avatar-sm" style="background-image: url(https://eu.ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }})"></span> --}}
+								<x-layout.picture url="{{auth()->user()->getAvatar(200)}}" />
 								<div class="d-none d-xl-block ps-2">
 									{{ auth()->user()->name ?? null }}
 								</div>
@@ -41,9 +42,9 @@
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 								<a href="{{ route('admin.profile.show') }}" class="dropdown-item">{{ __('الملف الشخصي') }}</a>
 								<div class="dropdown-divider"></div>
-								<form method="POST" action="{{ route('logout') }}">
+								<form method="POST" action="{{ route('admin.logout') }}">
 									@csrf
-									<a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">
+									<a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault(); this.closest('form').submit();">
 										{{ __('تسجيل الخروج') }}
 									</a>
 								</form>

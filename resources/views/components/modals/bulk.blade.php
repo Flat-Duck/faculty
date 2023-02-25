@@ -9,7 +9,7 @@
         <div class="row mb-3 align-items-end">            
           <div class="col">
             <label class="form-label">اختار ملف</label>
-            <input type="file" class="form-control" spellcheck="false" data-ms-editor="true">
+            <input type="file" accept=".xcl" class="form-control" spellcheck="false" data-ms-editor="true">
           </div>
         </div>
       </div>

@@ -86,7 +86,7 @@
                             @csrf
                             <div class="form-label">السيرة الذاتية</div>
                             <div class="mb-3 btn-group w-100">
-                                <input type="file" name="cv" class="form-control">
+                                <input type="file" accept=".pdf, .docx, .doc, .txt" name="cv" class="form-control">
                                 <button type="submit" class="btn btn-info"> رفع</button>
                             </div>
                         </form>
@@ -108,7 +108,7 @@
                                                         
                             <div class="form-label">البحوث العلمية والمنشورات</div>
                             <div class="mb-3 btn-group w-100">                            
-                                <input type="file" name="research[]" multiple class="form-control">
+                                <input type="file" accept=".pdf, .docx, .doc, .txt" name="research[]" multiple class="form-control">
                                 <button type="submit" class="btn btn-info"> رفع</button>
                             </div>
                         </form>

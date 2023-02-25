@@ -23,11 +23,11 @@ use App\Http\Controllers\Admin\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -78,6 +78,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::post('/password', [AdminController::class, 'passwordUpdate'])->name('password_update');
 
         // Logout
-        //Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('logout');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 });

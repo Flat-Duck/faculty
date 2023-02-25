@@ -28,6 +28,7 @@
                     <th>الدرجة العلمية</th>
                     <th>الدرجة الاكاديمية</th>
                     <th>تاريخ الترقية القادم</th>
+                    <th> العمليات</th>
                     <th>صورة شخصية</th>
                   </tr>
                 </thead>
@@ -47,15 +48,16 @@
                       <i class="ti ti-calendar-due"></i>
                       {{$member->next_pormotion_date}}
                     </td>
-                    <td>
-                      <x-layout.picture url="{{$member->getAvatar(200)}}" />
-                    </td>
-                    <td>
+                    
+                    <td class="text-nowrap text-muted">
                     @if (Carbon::parse($member->next_pormotion_date) <= Carbon::now())
                     <a class="btn btn-primary" href="{{ route('admin.decisions.create',['member' => $member->id ]) }}">
                         ترقية
                     </a>    
                     @endif
+                    </td>
+                    <td class="text-nowrap text-muted">
+                      <x-layout.picture url="{{$member->getAvatar(200)}}" />
                     </td>
                   </tr>
                   @endforeach

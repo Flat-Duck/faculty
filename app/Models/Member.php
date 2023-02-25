@@ -199,7 +199,9 @@ class Member extends Model implements HasMedia
      **/
     public  function addToArchive()
     {
-         $this->is_archived = Carbon::now();
+
+        $this->is_archived = is_null($this->is_archived) ? Carbon::now() :null;
+         //$this->is_archived = Carbon::now();
          $this->save();
         
     }
