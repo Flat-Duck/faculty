@@ -50,6 +50,13 @@
                     <td>
                       <x-layout.picture url="{{$member->getAvatar(200)}}" />
                     </td>
+                    <td>
+                    @if (Carbon::parse($member->next_pormotion_date) <= Carbon::now())
+                    <a class="btn btn-primary" href="{{ route('admin.decisions.create',['member' => $member->id ]) }}">
+                        ترقية
+                    </a>    
+                    @endif
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

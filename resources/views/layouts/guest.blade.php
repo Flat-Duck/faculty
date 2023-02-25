@@ -9,7 +9,7 @@
 
     @vite('resources/sass/app.scss')
 </head>
-<body class="border-top-wide border-primary d-flex flex-column">
+<body dir="rtl" class="theme-light border-top-wide border-primary d-flex flex-column">
 
     <div class="page page-center">
         <div class="container-tight py-4">
