@@ -62,6 +62,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::resource('decisions', DecisionController::class);
         Route::get('members/this_month', [MemberController::class, 'this_month'])->name('members.this_month');
         Route::get('members/this_year', [MemberController::class, 'this_year'])->name('members.this_year');
+        Route::post('members/import', [MemberController::class, 'import'])->name('bulk.import');
         Route::get('members/archive', [MemberController::class, 'archive'])->name('members.archive');
         Route::get('members/{member}/decisions/create', [DecisionController::class, 'create'])->name('decisions.create');
         Route::post('members/{member}/upload_cv', [MemberController::class, 'upload_cv'])->name('members.upload_cv');

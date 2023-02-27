@@ -7,13 +7,16 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Imports\MembersImport;
+use App\Jobs\CalculateNextPromotion;
 use App\Models\Research;
 use App\Models\Specialization;
 use Carbon\Carbon;
 
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Jobs\SendPromotionEmail;
 class MemberController extends Controller
 {
     /**
@@ -25,6 +28,9 @@ class MemberController extends Controller
     {
         $members = Member::getList(request()->search);
         $page = 'member';
+        
+      //  $to->diffInDays($from);
+      //  SendPromotionEmail::dispatch($members->first())->delay(now()->addDays(-10));
 
         return view('admin.members.index',compact('members','page'));
     }
@@ -85,7 +91,8 @@ class MemberController extends Controller
     {
         $validatedData = request()->validate(Member::validationRules());        
         $member = Member::create($validatedData);
-        $member->calculateNextPromotionDate();
+        //$member->calculateNextPromotionDate();
+        CalculateNextPromotion::dispatch($member);
         if (request()->has(['avatar'])) {
             $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
@@ -96,6 +103,30 @@ class MemberController extends Controller
         ]);
     }
 
+        
+    public function import(Request $request)
+    {
+
+
+        // if (request()->has(['file'])) {
+        //   //  $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+
+        //   dd(request()->file);
+        // }
+       // dd(request()->all());
+       // Excel::import(new MembersImport, request()->file('file'));
+        $import = new MembersImport;
+        $import->import($request->file('file'));
+       // Excel::import(new MembersImport,request()->file('file'));
+
+      // dd($collection);
+       // Excel::import(new MembersImport, $request->file);
+       // dd($import->errors());
+       return redirect()->route('admin.members.index')->with([
+            'type' => 'success',
+            'message' => 'تمت الاضافة بنجاح'
+        ]);
+    }
     /**
      * Display the specified resource.
      *

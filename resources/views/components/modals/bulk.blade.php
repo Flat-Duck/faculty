@@ -1,6 +1,7 @@
 <div class="modal modal-blur fade" id="modal-team" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <form method="POST" class="modal-content" enctype="multipart/form-data" action="{{route('admin.bulk.import')}}">
+      @csrf
       <div class="modal-header">
         <h5 class="modal-title">رفع قائمة الاسماء بالجملة من ملف اكسل</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -9,14 +10,14 @@
         <div class="row mb-3 align-items-end">            
           <div class="col">
             <label class="form-label">اختار ملف</label>
-            <input type="file" accept=".xcl" class="form-control" spellcheck="false" data-ms-editor="true">
+            <input name="file" type="file" accept=".xlsx" class="form-control" spellcheck="false" data-ms-editor="true">
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add Team</button>
+        <button type="button" class="btn me-auto" data-bs-dismiss="modal">إلغاء</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">رفع</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
