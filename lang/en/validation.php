@@ -90,8 +90,8 @@ return [
     'max' => [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'numeric' => 'The :attribute must not be greater than :max.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'numeric' => 'حقل :attribute يجب ان يكون اقل من  :max.',
+        'string' => 'حقل :attribute must not be greater than :max characters.',
     ],
     'max_digits' => 'The :attribute must not have more than :max digits.',
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -111,7 +111,7 @@ return [
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => 'حقل :attribute يجب ان يتكون من ارقام فقط',
     'password' => [
         'letters' => 'The :attribute must contain at least one letter.',
         'mixed' => 'The :attribute must contain at least one uppercase and one lowercase letter.',
@@ -198,7 +198,11 @@ return [
         'next_pormotion_date'=>'تاريخ الترقية القادمة',
         'notes'=>'الملاحظات',
         'picture'=>'الصورة الشخصية',
+        'promotion_date'=>'تاريخ تنفيذ الترقية',
         'is_archived'=>'',
+        'year'=>'سنة القرار',
+        'number'=>'رقم القرار',
     ],
+     
 
 ];

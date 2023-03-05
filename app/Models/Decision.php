@@ -31,8 +31,8 @@ class Decision extends Model
         return [
             'member_id' => 'required|numeric|exists:members,id',
             'number' => 'required|numeric|unique:decisions,number',
-            'year' => 'required|numeric',
-            'promotion_date' => 'required|date',            
+            'year' => 'required|numeric|max:' .date('Y'),
+            'promotion_date' => 'required|date|before:' .date('Y-m-d'),
             'type' => 'required|string',
             'researches' => 'required|array',
             'researches.*' => 'required|numeric|exists:researches,id',
