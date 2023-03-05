@@ -175,7 +175,7 @@ class Member extends Model implements HasMedia
     {
         return static::search($search)->whereNull('is_archived')
             //->latest()
-            ->paginate(10)
+            ->paginate(12)
             ->withQueryString();
         
     }

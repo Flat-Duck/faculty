@@ -77,6 +77,16 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item {{ $page == 'report'? 'active':''  }}">
+                        <a class="nav-link" href="{{ route('admin.reports.index') }}">
+                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <i class="ti ti-report-search"></i>
+                            </span>
+                            <span class="nav-link-title">
+                                {{ __('تقارير') }}
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

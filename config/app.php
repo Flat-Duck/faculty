@@ -211,7 +211,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Carbon' => 'Carbon\Carbon',
-        'Member' => 'App\Models\Member'
+        'Member' => 'App\Models\Member',
+        'Department' => 'App\Models\Department',
+        'Specialization' => 'App\Models\Specialization',
     ])->toArray(),
 
 ];

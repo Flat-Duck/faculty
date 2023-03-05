@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Admin;
 use App\Models\Member;
+use App\Models\Notice;
 use App\Notifications\MemberNeedsPromotionNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -36,6 +37,18 @@ class SendPromotionEmail implements ShouldQueue
      */
     public function handle()
     {
+        $notice = new Notice();
+        $message =       
+        ' عضو هيئة التدريس '.$this->member->name. PHP_EOL .
+        'القسم :'.$this->member->department->name.PHP_EOL .
+        'التخصص :'.$this->member->specialization->name.PHP_EOL.
+        'الدرجة العلمية :'.$this->member->degree.PHP_EOL.
+        'الدرجة الاكاديمية :'.$this->member->academic_degree.PHP_EOL.
+        'لديه ترقية مستحقة خلال تلاتة اشهر  من تاريخ اليوم تحديدا' .$this->member->next_pormotion_date.PHP_EOL.
+        'الرجاء اتخاذ الاجراءات اللازمة وتبيلغ المعني';
+        $notice->message = $message;
+        $notice->member_id = $this->member->id;
+        $notice->save();
         $this->admin->notify(new MemberNeedsPromotionNotification($this->member));
     }
 }

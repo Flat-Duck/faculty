@@ -10,7 +10,10 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\DecisionController;
+use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ReportController;
+
 //use Auth;
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +74,17 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::resource('profiles', ProfileController::class);
         Route::resource('specializations', SpecializationController::class);
         Route::resource('departments', DepartmentController::class);
-        
+        Route::resource('notices', NoticeController::class);
+        Route::name('reports.')->prefix('reports')->group(function () {
+            Route::get('/', [ReportController::class,'index'])->name('index');
+            Route::get('/report', [ReportController::class,'report']);
+
+            Route::post('/degree', [ReportController::class,'degree'])->name('degree');
+            Route::post('/academic_degree', [ReportController::class,'academic_degree'])->name('academic_degree');
+            Route::post('/department', [ReportController::class,'department'])->name('department');
+            Route::post('/specialization', [ReportController::class,'specialization'])->name('specialization');
+            Route::post('/dates', [ReportController::class,'dates'])->name('dates');
+        });
         // Profile
         Route::get('/profile', [AdminController::class, 'profile'])->name('profile.show');
         Route::post('/profile', [AdminController::class, 'profileUpdate'])->name('profile.update');
