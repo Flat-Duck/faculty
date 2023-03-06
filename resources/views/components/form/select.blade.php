@@ -1,7 +1,7 @@
 @props(['name', 'placeholder'])
 
 <div {{$attributes->merge(['class'=>'mb-3'])}}>
-    <label class="form-label" for="{{$name[0]}}">{{$placeholder}}</label>
+    <label class="form-label" for="{{$name}}">{{$placeholder}}</label>
     <select class="form-control @error($name) is-invalid @enderror" 
         name="{{$name}}" id="{{$name}}">
         @foreach ($items as $item)
