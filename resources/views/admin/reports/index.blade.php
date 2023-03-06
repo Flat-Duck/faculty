@@ -29,7 +29,7 @@
                   <button type="submit" class="btn btn-primary">إنشاءتقرير</button>
                 </div>
               </form>
-              <form method="POST" action="{{route('admin.reports.degree')}}">
+              <form method="POST" action="{{route('admin.reports.academic_degree')}}">
                 @csrf
                 <div class="row mb-3">
                   <label class="form-label">تقرير حسب الدرجة الاكاديمية</label>
@@ -47,7 +47,7 @@
 
 
 
-              <form method="POST" action="{{route('admin.reports.degree')}}">
+              <form method="POST" action="{{route('admin.reports.department')}}">
                 @csrf
                 <div class="row mb-3"> 
                   {{-- form-selectgroup"> --}}
@@ -63,7 +63,7 @@
               </div>
               </form>
 
-              <form method="POST" action="{{route('admin.reports.degree')}}">
+              <form method="POST" action="{{route('admin.reports.specialization')}}">
                 @csrf
               <div class="row mb-3"> 
                    {{-- <div class="mb-3 form-selectgroup"> --}}
@@ -80,17 +80,21 @@
               </form>
                 
               
-              <div class="row">               
-                <x-form.input class="col-3" type="date" name="employment_date" placeholder="تاريخ البداية" />
+              <div class="row">   
+                <form method="POST" action="{{route('admin.reports.dates')}}">
+                  @csrf            
+                <x-form.input class="col-3" type="date" name="start" placeholder="تاريخ البداية" />
               
               
-                <x-form.input class="col-3" type="date" name="employment_date" placeholder="تاريخ النهاية" />
+                <x-form.input class="col-3" type="date" name="end" placeholder="تاريخ النهاية" />
               
               <div class="mb-3 col-3">
 <br/>
 <br/>
-                <button  type="submit" class="btn btn-primary col-md-3 btn-md">إنشاءتقرير</button>
+                <button  type="submit" class="btn btn-primary col-md-3">إنشاءتقرير</button>
+                
               </div>
+                </form>
               </div>
             </div>    
         </div>

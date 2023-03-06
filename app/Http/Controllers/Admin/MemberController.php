@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Department;
 use App\Models\Member;
+use App\Models\Research;
+use App\Models\Department;
+use App\Models\Specialization;
+
+use App\Jobs\CalculateNextPromotion;
+use App\Imports\MembersImport;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-use App\Imports\MembersImport;
-use App\Jobs\CalculateNextPromotion;
-use App\Models\Research;
-use App\Models\Specialization;
 use Carbon\Carbon;
 
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Jobs\SendPromotionEmail;
 class MemberController extends Controller
 {
     /**
@@ -184,22 +181,13 @@ class MemberController extends Controller
     
     public function upload_research(Member $member, Request $request)
     {
-       
-        $validatedData = request()->validate(Research::validationRules());           
-
+        $validatedData = request()->validate(Research::validationRules());
         $research = Research::create($validatedData);
-
-        // if ($images = $request->file('images')) {
-           
-        // }
-        //dd(request()->all());
         if (request()->has(['research'])) {
             $files = request()->file('research');
             foreach ($files as $file) {
-                //dd($research);
                 $research->addMedia($file)->toMediaCollection('researchs');
             }
-            //$research->addMediaFromRequest('research')->toMediaCollection('researchs');
         }
         return back()->with(['type' => 'success', 'message' => 'Profile updated successfully']);
 
