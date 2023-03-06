@@ -39,7 +39,7 @@ class MembersImport implements ToCollection, WithHeadingRow, SkipsOnError
                 'n_id' => $row['n_id'],
                 'employment_date' => Carbon::now(),// $row['employment_date'],
                 'department_id' => Department::firstOrCreate(['name' => $row['department_id']])->id,
-                'specialization_id' => Specialization::firstOrCreate(['Name' => $row['specialization_id']])->id,
+                'specialization_id' => Specialization::firstOrCreate(['name' => $row['specialization_id']])->id,
                 'degree' => $row['degree'],
                 'academic_degree' => $row['academic_degree'],                                
                 'last_pormotion_date' =>  $row['last_pormotion_date'],
