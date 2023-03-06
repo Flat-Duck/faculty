@@ -46,9 +46,9 @@
                                 </div>
                                 <div class="row">
                                 
-                                    <x-form.select class="col-6" name="academic_degree" placeholder="الدرجة الاكاديمية" :items="App\Models\Member::academic_degrees" />
+                                    {{-- <x-form.select class="col-6" name="academic_degree" placeholder="الدرجة الاكاديمية" :items="Member::academic_degrees" /> --}}
                                     
-                                    <x-form.select class="col-6" name="degree" placeholder="الدرجة العلمية" :items="App\Models\Member::degrees" />
+                                    <x-form.select class="col-6" name="degree" placeholder="الدرجة العلمية" :items="Member::degrees" />
 
                                 </div>
                                 <div class="row">

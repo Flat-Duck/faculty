@@ -1,4 +1,4 @@
-@props(['name', 'placeholder'])
+@props(['name', 'placeholder','items'])
 
 <div>
      {{-- {{$attributes->merge(['class'=>'mb-3'])}}> --}}
