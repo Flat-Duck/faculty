@@ -10,7 +10,7 @@
         <div class="row mb-3 align-items-end">            
           <div class="col">
             <label class="form-label">اختار ملف</label>
-            <input name="file" type="file" accept=".xlsx" class="form-control" spellcheck="false" data-ms-editor="true">
+            <input name="file" type="file" accept=".csv, text/csv, .xlsx" class="form-control" spellcheck="false" data-ms-editor="true">
           </div>
         </div>
       </div>
