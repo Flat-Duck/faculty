@@ -48,8 +48,8 @@ class CalculateNextPromotion implements ShouldQueue
         $now = Carbon::now();
 
       
-        $days = $now->diffInDays($next);
-       
+        $days = $now->diffInDays($next) - 90;
+                      
         SendPromotionEmail::dispatch($this->member)->delay(now()->addDays($days));
     }
 
