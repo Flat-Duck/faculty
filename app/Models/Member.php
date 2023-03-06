@@ -94,6 +94,19 @@ class Member extends Model implements HasMedia
             return 4;
         }
     }
+
+    public function hasAvailablePromotion(){
+        if(is_null($this->next_pormotion_date)) return false;
+        $eligble = $this->degree != 'أستاذ';
+        if(!$eligble) return false;
+        
+        $now = Carbon::now();
+        $due = new Carbon($this->next_pormotion_date);        
+        
+        Carbon::parse($this->next_pormotion_date) <= Carbon::now();
+
+        return true;
+    }
    
     /**
      * The name of xxxxx

@@ -36,21 +36,21 @@ class CalculateNextPromotion implements ShouldQueue
      */
     public function handle()
     {
-        $years = $this->getMinimumYears($this->member->degree,$this->member->academic_degree);
-        if($years > 0){
-            $last_date = new Carbon($this->member->last_pormotion_date);
-            $this->next_date = $last_date->addYears($years);
-            $this->member->next_pormotion_date = $this->next_date;
-            $this->member->save();
+        $eligble = $this->member->degree == 'أستاذ';
+        if(!$eligble){
+            $years = $this->getMinimumYears($this->member->degree,$this->member->academic_degree);
+            if($years > 0){
+                $last_date = new Carbon($this->member->last_pormotion_date);            
+                $this->next_date = $last_date->addYears($years);
+                $this->member->next_pormotion_date = $this->next_date;
+                $this->member->save();
+            }
+        
+            $next = Carbon::parse($this->next_date);
+            $now = Carbon::now();
+            $days = $now->diffInDays($next) - 90;
+            SendPromotionEmail::dispatch($this->member)->delay(now()->addDays($days));
         }
-
-        $next = Carbon::parse($this->next_date);
-        $now = Carbon::now();
-
-      
-        $days = $now->diffInDays($next) - 90;
-                      
-        SendPromotionEmail::dispatch($this->member)->delay(now()->addDays($days));
     }
 
 
