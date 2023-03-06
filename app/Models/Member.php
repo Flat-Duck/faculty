@@ -101,11 +101,10 @@ class Member extends Model implements HasMedia
         if(!$eligble) return false;
         
         $now = Carbon::now();
-        $due = new Carbon($this->next_pormotion_date);        
-        
-        Carbon::parse($this->next_pormotion_date) <= Carbon::now();
+        $due = new Carbon($this->next_pormotion_date);
 
-        return true;
+        return $due >= $now;
+
     }
    
     /**
