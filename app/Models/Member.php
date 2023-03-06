@@ -103,7 +103,7 @@ class Member extends Model implements HasMedia
         $now = Carbon::now();
         $due = new Carbon($this->next_pormotion_date);
 
-        return $due >= $now;
+        return $due <= $now;
 
     }
    
