@@ -52,7 +52,7 @@
                             <td>{{ $member->degree }}</td>
                             <td>{{ $member->phone }}</td>
                             <td>{{ $member->last_pormotion_date }}</td>
-                            <td>{{ $member->next_pormotion_date?? '---' }}</td>
+                            <td>{{ $member->next_pormotion_date?? '----------' }}</td>
                             <td>
                                 @php $src = $member->picture ? \Storage::url($member->picture) : '' @endphp
                                     @if($src)                                
