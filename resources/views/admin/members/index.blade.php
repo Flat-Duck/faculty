@@ -76,7 +76,7 @@
                                         <i class="ti ti-trash-x"></i>
                                     </a>                                        
                                 </form>
-                                @if (Carbon::parse($member->next_pormotion_date) <= Carbon::now())
+                                @if (!is_null($member->next_pormotion_date) && Carbon::parse($member->next_pormotion_date) <= Carbon::now())
                                 <a class="btn btn-primary" href="{{ route('admin.decisions.create',['member' => $member->id ]) }}">
                                     ترقية
                                 </a>    

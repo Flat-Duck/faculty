@@ -20,7 +20,7 @@ class CreateMembersTable extends Migration
             $table->date('employment_date')->nullable();
             $table->bigInteger('department_id')->unsigned()->index();
             $table->bigInteger('specialization_id')->unsigned()->index();                        
-            $table->enum('degree',[ 'أستاذ','أستاذ مساعد','أستاذ مشارك','محاضر ','محاضر مساعد '])->nullable();
+            $table->enum('degree',['أستاذ','أستاذ مساعد','أستاذ مشارك','محاضر','محاضر مساعد'])->nullable();
             $table->enum('academic_degree',['ماجستير','دكتوراة'])->nullable();
             $table->date('last_pormotion_date')->nullable();
             $table->date('next_pormotion_date')->nullable();
