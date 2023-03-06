@@ -28,10 +28,6 @@ class MemberController extends Controller
     {
         $members = Member::getList(request()->search);
         $page = 'member';
-        
-      //  $to->diffInDays($from);
-      //  SendPromotionEmail::dispatch($members->first())->delay(now()->addDays(-10));
-
         return view('admin.members.index',compact('members','page'));
     }
     /**
@@ -90,13 +86,13 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $validatedData = request()->validate(Member::validationRules());        
-        $member = Member::create($validatedData);
-        //$member->calculateNextPromotionDate();
-        CalculateNextPromotion::dispatch($member);
+        $member = Member::create($validatedData);        
         if (request()->has(['avatar'])) {
             $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
 
+        CalculateNextPromotion::dispatch($member);
+        
         return redirect()->route('admin.members.index')->with([
             'type' => 'success',
             'message' => 'تمت الاضافة بنجاح'
@@ -106,22 +102,9 @@ class MemberController extends Controller
         
     public function import(Request $request)
     {
-
-
-        // if (request()->has(['file'])) {
-        //   //  $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-
-        //   dd(request()->file);
-        // }
-       // dd(request()->all());
-       // Excel::import(new MembersImport, request()->file('file'));
         $import = new MembersImport;
         $import->import($request->file('file'));
-       // Excel::import(new MembersImport,request()->file('file'));
-
-      // dd($collection);
-       // Excel::import(new MembersImport, $request->file);
-       // dd($import->errors());
+     
        return redirect()->route('admin.members.index')->with([
             'type' => 'success',
             'message' => 'تمت الاضافة بنجاح'
@@ -167,7 +150,7 @@ class MemberController extends Controller
         if (request()->has(['avatar'])) {
             $member->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
-
+        CalculateNextPromotion::dispatch($member);
         return redirect()->route('admin.members.index')->with([
             'type' => 'success',
             'message' => 'تم التعديل بنجاح'
