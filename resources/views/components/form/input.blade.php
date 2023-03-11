@@ -11,9 +11,9 @@
         placeholder="{{$placeholder}}"
         value="{{$value?? old($name) }}"
         id="{{$name}}"
-        @if($name=="phone")
+        {{-- @if($name=="phone")
         data-mask="0000000000" data-mask-visible="true" autocomplete="off" spellcheck="false" data-ms-editor="true"
-        @endif
+        @endif --}}
         />
         @error($name)
             <div class="invalid-feedback">{{ $message }}</div>

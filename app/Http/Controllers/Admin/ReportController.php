@@ -26,7 +26,7 @@ class ReportController extends Controller
 
     public function academic_degree(Request $request)
     {
-        $members = Member::where('academic_degree',$request->academic_degrees)->get();
+        $members = Member::where('academic_degree',$request->academic_degree)->get();
         return view('admin.reports.report',compact('members'));
     }
 
